@@ -2,10 +2,10 @@
 
 one:
   comment: MyString
-  recipe_id: 1
-  category_id: 1
+  recipe: one
+  category: one
 
 two:
   comment: MyString
-  recipe_id: 1
-  category_id: 1
+  recipe: two
+  category: two
