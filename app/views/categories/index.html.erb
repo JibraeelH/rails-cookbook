@@ -2,22 +2,30 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.squarespace-cdn.com/content/v1/645373856396281dfb4b2d17/fd786f13-2ee9-4d62-acf2-9fb188765f84/new-punjab-club-food-spread.jpg?format=1500w);">
   <div class="container">
     <h1><strong>Cookbook Categories |</strong><em> for the </em><strong>| Foodies!</strong></h1>
-    <p>Your personal Cookbook for your favourite recipes.</p>
+    <p>A personal Cookbook for your favourite recipes.</p>
   </div>
 </div>
 
 <div class="container">
-  <h2> List of Categories <a class="btn btn-primary" 20px href="/categories/new" >Create Category</a></h2>
+  <div class="d-flex justify-content-between align-items-center my-4">
+    <h2> List of Categories</h2> <a class="btn btn-primary"  href="/categories/new">Create Category</a>
+  </div>
+  <div class="cards">
+    <% @categories.each do |category| %>
+      <% if category.photo.attached? %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path category.photo.key, height: 300, crop: :fill %>')">
+          <%= link_to category.name, category_path(category)%>
+          <%= link_to "🗑️", category_path(category), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"card-delete-icon" %>
+        </div>
+      <% else %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          <%= link_to category.name, category_path(category)%>
+          <%= link_to "🗑️", category_path(category), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"card-delete-icon" %>
+        </div>
+      <% end %>
 
-    <div class="cards">
-        <% @categories.each do |category| %>
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-            <%= category.name %>
-            <%= link_to "🗑️", category_path(category), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"card-delete-icon" %>
-          </div>
-        <% end %>
-
-
-    </div>
+    <% end %>
+  </div>
 
 </div>
+

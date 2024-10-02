@@ -32,6 +32,6 @@ class CategoriesController < ApplicationController
 
   def category_params
     # takes the params objects, filters it down and returns it
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :photo)
   end
 end
